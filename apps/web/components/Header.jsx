@@ -51,7 +51,8 @@ export default function Header() {
             <Menu />
           </button>
           <Link href="/" className="brand">
-            <span>ISLAMI</span> EXPRESS<small>NEWS • VIEWS • E-PAPER</small>
+          <img src="./assets/logo/logoislamiexpress.png" alt="Islami Express" width={200} height={100} />
+            {/* <span>ISLAMI</span> EXPRESS<small>NEWS • VIEWS • E-PAPER</small> */}
           </Link>
          
           <button
