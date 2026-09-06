@@ -35,7 +35,7 @@ export default async function Home() {
       <div className="container">
         <AdSlot
           image="/assets/ads/3.jpeg"
-          style={{ width: "1280px", height: "140px" }}
+          style={{ width: "1280px", height: "250px" }}
         />
         <section className="hero-grid">
           <article className="lead-story">
@@ -86,7 +86,7 @@ export default async function Home() {
             </section>
             <AdSlot
               image="/assets/ads/4.jpeg"
-              style={{ width: "930px", height: "140px" }}
+              style={{ width: "930px", height: "250px" }}
             />
             <Section
               title="India"
