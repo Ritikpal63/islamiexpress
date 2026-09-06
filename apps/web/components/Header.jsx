@@ -53,8 +53,9 @@ export default function Header() {
             <span>ISLAMI</span> EXPRESS<small>NEWS • VIEWS • E-PAPER</small>
           </Link>
           <div className="header-ad">
-            <span>ADVERTISEMENT</span>
-            <b>970 × 90</b>
+            {/* <span>ADVERTISEMENT</span>
+            <b>970 × 90</b> */}
+            <img src="./assets/ads/1.jpeg" alt="Advertisement" width={900} height={90} />
           </div>
           <button
             className="icon-btn"
