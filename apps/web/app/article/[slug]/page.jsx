@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, MapPin } from "lucide-react";
 import { apiFetch } from "@/lib/api";
-import { demoArticles, fallbackImage } from "@/lib/mock";
+import { demoArticles, fallbackImage, fallbackImage2 } from "@/lib/mock";
 import EngagementBar from "@/components/EngagementBar";
 import Comments from "@/components/Comments";
 import NewsCard from "@/components/NewsCard";
@@ -74,7 +74,7 @@ export default async function ArticlePage({ params }) {
         >
           {(a.news_type || "news").replace("_", " ")}
         </span>
-        <h1>{a.title}</h1>
+        <h2 style={{ fontSize: "3.5rem" }}>{a.title}</h2 >
         {a.summary && <p className="standfirst">{a.summary}</p>}
         <div className="byline">
           <div className="avatar">{a.author_name?.[0] || "I"}</div>
@@ -99,11 +99,16 @@ export default async function ArticlePage({ params }) {
           </div>
         </div>
         <EngagementBar article={a} />
-        <AdSlot compact size="300 × 250" image="/assets/ads/4.jpeg" style={{width: "820px", height: "240px"}} />
+        <AdSlot
+          compact
+          size="300 × 250"
+          image="/assets/ads/4.jpeg"
+          style={{ width: "820px", height: "240px" }}
+        />
         <figure className="article-figure">
           <div>
             <Image
-              src={a.featured_image || fallbackImage}
+              src={fallbackImage2 || a.featured_image || fallbackImage}
               alt={a.title}
               fill
               priority
@@ -120,7 +125,12 @@ export default async function ArticlePage({ params }) {
           className="article-body"
           dangerouslySetInnerHTML={{ __html: a.body }}
         />
-        <AdSlot compact size="300 × 250" image="/assets/ads/2.jpeg" style={{width: "820px", height: "250px"}} />
+        <AdSlot
+          compact
+          size="300 × 250"
+          image="/assets/ads/2.jpeg"
+          style={{ width: "820px", height: "250px" }}
+        />
         {a.correction_note && (
           <aside className="correction">
             <b>Correction / Update</b>
@@ -150,7 +160,12 @@ export default async function ArticlePage({ params }) {
         )}
       </article>
       <aside className="article-sidebar">
-        <AdSlot compact size="300 × 250" image="/assets/ads/banner2.jpeg" style={{width: "320px", height: "260px"}} />
+        <AdSlot
+          compact
+          size="300 × 250"
+          image="/assets/ads/banner2.jpeg"
+          style={{ width: "320px", height: "260px" }}
+        />
         <div className="story-stats">
           <h3>Story Activity</h3>
           <span>
@@ -166,7 +181,12 @@ export default async function ArticlePage({ params }) {
             <b>{a.share_count || 0}</b> Shares
           </span>
         </div>
-        <AdSlot compact size="300 × 250" image="/assets/ads/banner1.jpeg" style={{width: "320px", height: "260px"}} />
+        <AdSlot
+          compact
+          size="300 × 250"
+          image="/assets/ads/banner1.jpeg"
+          style={{ width: "320px", height: "260px" }}
+        />
       </aside>
     </div>
   );

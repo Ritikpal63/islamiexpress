@@ -1,11 +1,12 @@
 export const fallbackImage =
   "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80";
+export const fallbackImage2 = "/assets/News-Images/news2.jpeg";
 export const demoArticles = [
   {
     id: "d1",
     slug: "welcome-to-islamiexpress",
     title:
-      "इस्लामी एक्सप्रेस न्यूज़ एक विश्वसनीय हिंदी समाचार मंच है, जिसका उद्देश्य देश-दुनिया की महत्वपूर्ण खबरों, जनहित के मुद्दों और समाज से जुड़े विषयों को सत्य, निष्पक्षता और जिम्मेदारी के साथ पाठकों तक पहुँचाना है।",
+      "पत्रकारिता केवल समाचार प्रकाशित करने का माध्यम नहीं, बल्कि समाज की आवाज़ को जिम्मेदारी के साथ सामने रखने का संकल्प है।",
     summary:
       "Fast updates, trusted reporting, e-paper access and a modern reader experience in one place.",
     featured_image:  fallbackImage,
@@ -20,7 +21,7 @@ export const demoArticles = [
   {
     id: "d2",
     slug: "morning-news-brief",
-    title: "पत्रकारिता केवल समाचार प्रकाशित करने का माध्यम नहीं, बल्कि समाज की आवाज़ को जिम्मेदारी के साथ सामने रखने का संकल्प है।",
+    title: "इस्लामी एक्सप्रेस न्यूज़ एक विश्वसनीय हिंदी समाचार मंच है, जिसका उद्देश्य देश-दुनिया की महत्वपूर्ण खबरों, जनहित के मुद्दों और समाज से जुड़े विषयों को सत्य, निष्पक्षता और जिम्मेदारी के साथ पाठकों तक पहुँचाना है।",
     summary:
       "A concise look at the developments shaping the day across India and the world.",
     featured_image:

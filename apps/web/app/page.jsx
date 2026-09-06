@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Play, TrendingUp, ChevronRight } from "lucide-react";
 import { apiFetch } from "@/lib/api";
-import { demoArticles, fallbackImage } from "@/lib/mock";
+import { demoArticles, fallbackImage, fallbackImage2 } from "@/lib/mock";
 import BreakingTicker from "@/components/BreakingTicker";
 import NewsCard from "@/components/NewsCard";
 import Section from "@/components/Section";
@@ -42,7 +42,7 @@ export default async function Home() {
             <Link href={`/article/${lead.slug}`}>
               <div className="lead-image">
                 <Image
-                  src={lead.featured_image || fallbackImage}
+                  src={fallbackImage2 || lead.featured_image || fallbackImage}
                   alt={lead.title}
                   fill
                   priority
@@ -50,7 +50,7 @@ export default async function Home() {
                 />
               </div>
               <span className="breaking-pill">TOP STORY</span>
-              <h1>{lead.title}</h1>
+              <h2>{lead.title}</h2>
               <p>{lead.summary}</p>
             </Link>
           </article>
@@ -159,8 +159,8 @@ export default async function Home() {
             />
           </aside>
         </div>
-        <section className="epaper-promo">
-          <div>
+        <section className="epaper-promo" style={{ backgroundColor: "#f9f9f9", marginTop: "20px", alignItems: "center", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+          {/* <div>
             <small>TODAY'S NEWSPAPER</small>
             <h2>Read Islami Express E-Paper</h2>
             <p>
@@ -176,7 +176,8 @@ export default async function Home() {
               ISLAMI <b>EXPRESS</b>
               <span>DAILY E-PAPER</span>
             </div>
-          </div>
+          </div> */}
+          <img src="/assets/News-Images/news1.jpeg" alt="" style={{ width: "100%", height: "400px" }} />
         </section>
       </div>
     </>
