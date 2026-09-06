@@ -49,7 +49,7 @@ export default async function Home() {
                   sizes="(max-width:900px) 100vw, 60vw"
                 />
               </div>
-              <span className="breaking-pill">TOP STORY</span>
+              {/* <span className="breaking-pill">TOP STORY</span> */}
               <h2>{lead.title}</h2>
               <p>{lead.summary}</p>
             </Link>
