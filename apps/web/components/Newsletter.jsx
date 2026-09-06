@@ -1,0 +1,3 @@
+'use client';
+import {useState} from 'react';import {clientApi} from '@/lib/api';
+export default function Newsletter(){const[email,setEmail]=useState('');const[msg,setMsg]=useState('');async function submit(e){e.preventDefault();try{await clientApi('/public/newsletter',{method:'POST',body:JSON.stringify({email})});setMsg('Subscribed successfully');setEmail('')}catch(e){setMsg(e.message)}}return <div className="newsletter"><h4>Daily Newsletter</h4><p>Top stories delivered to your inbox.</p><form onSubmit={submit}><input type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email address"/><button>Subscribe</button></form>{msg&&<small>{msg}</small>}</div>}

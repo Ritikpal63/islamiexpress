@@ -1,0 +1,1 @@
+import{Suspense}from'react';import AuthForm from'@/components/AuthForm';export const metadata={title:'Reader Login'};export default function Login(){return <div className="auth-page"><Suspense><AuthForm mode="login"/></Suspense></div>}
