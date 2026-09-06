@@ -23,15 +23,16 @@ export default function AdSlot({
 
   return (
     <aside
-      className={`ad-slot ${compact ? "compact" : ""}`}
+      className={`ad-slot ad-slot--image ${compact ? "compact" : ""}`}
       aria-label="Advertisement"
     >
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-      >
-        <img src={image} alt={alt} style={style} />
+      <a href={link} target="_blank" rel="noopener noreferrer sponsored">
+        <img
+          src={image}
+          alt={alt}
+          style={{ ...style, maxWidth: "100%", height: "auto" }}
+          className="top-banner"
+        />
       </a>
     </aside>
   );
