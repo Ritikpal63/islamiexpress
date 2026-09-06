@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Menu, Search, User, Newspaper, X } from "lucide-react";
 import { useState } from "react";
+import AdSlot from "./AdSlot";
 
 const nav = [
   ["Latest", "/latest"],
@@ -52,11 +53,7 @@ export default function Header() {
           <Link href="/" className="brand">
             <span>ISLAMI</span> EXPRESS<small>NEWS • VIEWS • E-PAPER</small>
           </Link>
-          <div className="header-ad">
-            {/* <span>ADVERTISEMENT</span>
-            <b>970 × 90</b> */}
-            <img src="./assets/ads/1.jpeg" alt="Advertisement" width={900} height={90} />
-          </div>
+         
           <button
             className="icon-btn"
             onClick={() => setSearch((v) => !v)}

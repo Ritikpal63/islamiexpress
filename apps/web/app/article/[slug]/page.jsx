@@ -99,7 +99,7 @@ export default async function ArticlePage({ params }) {
           </div>
         </div>
         <EngagementBar article={a} />
-        <AdSlot size="728 × 90 article-top ad" />
+        <AdSlot compact size="300 × 250" image="/assets/ads/4.jpeg" style={{width: "820px", height: "240px"}} />
         <figure className="article-figure">
           <div>
             <Image
@@ -120,7 +120,7 @@ export default async function ArticlePage({ params }) {
           className="article-body"
           dangerouslySetInnerHTML={{ __html: a.body }}
         />
-        <AdSlot size="Responsive in-article ad" />
+        <AdSlot compact size="300 × 250" image="/assets/ads/2.jpeg" style={{width: "820px", height: "250px"}} />
         {a.correction_note && (
           <aside className="correction">
             <b>Correction / Update</b>
@@ -150,7 +150,7 @@ export default async function ArticlePage({ params }) {
         )}
       </article>
       <aside className="article-sidebar">
-        <AdSlot compact size="300 × 250" />
+        <AdSlot compact size="300 × 250" image="/assets/ads/banner2.jpeg" style={{width: "320px", height: "260px"}} />
         <div className="story-stats">
           <h3>Story Activity</h3>
           <span>
@@ -166,7 +166,7 @@ export default async function ArticlePage({ params }) {
             <b>{a.share_count || 0}</b> Shares
           </span>
         </div>
-        <AdSlot compact size="300 × 600" />
+        <AdSlot compact size="300 × 250" image="/assets/ads/banner1.jpeg" style={{width: "320px", height: "260px"}} />
       </aside>
     </div>
   );

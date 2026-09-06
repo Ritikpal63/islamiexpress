@@ -33,7 +33,10 @@ export default async function Home() {
     <>
       <BreakingTicker items={breaking.slice(0, 5)} />
       <div className="container">
-        <AdSlot size="970 × 90 / responsive leaderboard" />
+        <AdSlot
+          image="/assets/ads/3.jpeg"
+          style={{ width: "1280px", height: "140px" }}
+        />
         <section className="hero-grid">
           <article className="lead-story">
             <Link href={`/article/${lead.slug}`}>
@@ -81,7 +84,10 @@ export default async function Home() {
                 ))}
               </div>
             </section>
-            <AdSlot size="728 × 90 in-content leaderboard" />
+            <AdSlot
+              image="/assets/ads/4.jpeg"
+              style={{ width: "930px", height: "140px" }}
+            />
             <Section
               title="India"
               slug="india"
@@ -94,7 +100,12 @@ export default async function Home() {
                 groups.Politics.length ? groups.Politics : all.slice(2, 6)
               }
             />
-            <AdSlot size="Responsive middle-page ad" />
+            <AdSlot
+              compact
+              size="300 × 250"
+              image="/assets/ads/5.jpeg"
+              style={{ width: "920px", height: "240px" }}
+            />
             <Section
               title="Business"
               slug="business"
@@ -118,7 +129,12 @@ export default async function Home() {
             />
           </div>
           <aside className="home-sidebar">
-            <AdSlot compact size="300 × 250" />
+            <AdSlot
+              compact
+              size="300 × 250"
+              image="/assets/ads/banner1.jpeg"
+              style={{ height: "270px", width: "320px" }}
+            />
             <div className="editors-pick">
               <h3>Editor’s Picks</h3>
               {all.slice(0, 5).map((a, i) => (
@@ -135,7 +151,12 @@ export default async function Home() {
               <h3>Watch the latest reports, interviews and explainers</h3>
               <Link href="/category/videos">Watch now →</Link>
             </div>
-            <AdSlot compact size="300 × 600" />
+            <AdSlot
+              compact
+              size="300 × 250"
+              image="/assets/ads/banner2.jpeg"
+              style={{ height: "270px", width: "320px" }}
+            />
           </aside>
         </div>
         <section className="epaper-promo">
