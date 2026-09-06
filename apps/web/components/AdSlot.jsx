@@ -14,6 +14,12 @@ export default function AdSlot({
           width={1280}
           height={120}
         />
+        <img
+          src="/assets/ads/1.jpeg"
+          alt="Advertisement"
+          width={1280}
+          height={120}
+        />
       {/* <small>{label}</small>
       <strong>{size}</strong> */}
     </aside>
