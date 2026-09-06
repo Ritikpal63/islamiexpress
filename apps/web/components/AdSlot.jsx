@@ -8,8 +8,14 @@ export default function AdSlot({
       className={`ad-slot ${compact ? "compact" : ""}`}
       aria-label="Advertisement"
     >
-      <small>{label}</small>
-      <strong>{size}</strong>
+        <img
+          src="./assets/ads/1.jpeg"
+          alt="Advertisement"
+          width={1280}
+          height={120}
+        />
+      {/* <small>{label}</small>
+      <strong>{size}</strong> */}
     </aside>
   );
 }
