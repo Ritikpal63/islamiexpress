@@ -1,1 +1,12 @@
-export default function manifest(){return{name:'Islami Express',short_name:'Islami Express',description:'Daily news and e-paper',start_url:'/',display:'standalone',background_color:'#ffffff',theme_color:'#d71920',icons:[]}}
+export default function manifest() {
+  return {
+    name: "Islami Express",
+    short_name: "Islami Express",
+    description: "Daily news and e-paper",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#d71920",
+    icons: [],
+  };
+}
