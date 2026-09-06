@@ -1108,6 +1108,34 @@ footer {
   font: 900 28px Georgia;
   color: #fff;
 }
+.footer-grid > div {
+  min-width: 0;
+}
+.footer-contact {
+  margin-top: 24px;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.footer-contact h4 {
+  margin-bottom: 12px;
+}
+.footer-contact p {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.footer-contact strong {
+  color: #fff;
+  font-weight: 600;
+}
+.footer-contact a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.footer-contact a:hover,
+.footer-contact a:focus-visible {
+  color: #fff;
+}
 .footer-grid p {
   font-size: 13px;
   line-height: 1.6;

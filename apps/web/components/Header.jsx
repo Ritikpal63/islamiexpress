@@ -54,7 +54,7 @@ export default function Header() {
           <img src="./assets/logo/logoislamiexpress.png" alt="Islami Express" width={200} height={100} />
             {/* <span>ISLAMI</span> EXPRESS<small>NEWS • VIEWS • E-PAPER</small> */}
           </Link>
-         
+         <AdSlot image="/assets/ads/2.jpeg" />
           <button
             className="icon-btn"
             onClick={() => setSearch((v) => !v)}
