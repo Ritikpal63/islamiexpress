@@ -3,11 +3,10 @@
 export default function AdSlot({
   label = "ADVERTISEMENT",
   image,
-  mobileImage,
   link = "#",
   alt = "Advertisement",
   size = "Responsive ad placement",
-  compact = false,
+  compact = true,
   style = {},
 }) {
   if (!image) {
@@ -27,8 +26,6 @@ export default function AdSlot({
       className={`ad-slot ${compact ? "compact" : ""}`}
       aria-label="Advertisement"
     >
-      {/* <small>{label}</small> */}
-
       <a
         href={link}
         target="_blank"
