@@ -33,7 +33,7 @@ export default function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>
-          © {new Date().getFullYear()} Islami Express. All rights reserved.
+          © {new Date().getFullYear()} OnetoZServices. All rights reserved.
         </span>
         <span>
           <Link href="/privacy">Privacy</Link> • Terms • Cookie Policy
