@@ -12,13 +12,14 @@ import sanitizeHtml from "sanitize-html";
 async function getArticle(slug) {
   const d = await apiFetch(`/articles/${slug}`, { next: { revalidate: 60 } });
   if (d?.data) return d.data;
-  const demo = process.env.NODE_ENV === "development" && demoArticles.find((x) => x.slug === slug);
+    const demo = demoArticles.find((x) => x.slug === slug) || demoArticles[0];
+  // const demo = process.env.NODE_ENV === "development" && demoArticles.find((x) => x.slug === slug);
   if (!demo) notFound();
   return {
     ...demo,
     body: `<p>${demo.summary}</p><p>Islami Express is designed to publish verified daily reporting with a clear distinction between news, opinion and sponsored material. This demonstration article shows the production article layout.</p><h2>A newsroom built for fast, responsible publishing</h2><p>Reporters can prepare stories, editors can review and correct them, and the publishing system can place important coverage across the home page, category pages, search, RSS feeds and the e-paper archive.</p><p>Readers can like stories, save them for later, share them and participate in moderated discussions.</p>`,
     related: demoArticles.slice(1, 5),
-    allow_comments: false,
+    allow_comments: true,
     view_count: 3182,
     like_count: 124,
     comment_count: 18,
