@@ -47,6 +47,7 @@ textarea {
 }
 .utility-inner > div {
   display: flex;
+  align-items: center;
   gap: 18px;
 }
 .utility a {
@@ -58,6 +59,75 @@ textarea {
   background: #fff;
   position: relative;
   z-index: 20;
+}
+/* Keep the language menu above the masthead and inside narrow viewports. */
+.language-translator {
+  position: relative;
+  flex-shrink: 0;
+}
+.language-translator summary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+.language-translator summary::-webkit-details-marker {
+  display: none;
+}
+.language-translator summary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.translation-panel {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 100%;
+  z-index: 100;
+  width: min(290px, calc(100vw - 22px));
+  max-height: calc(100dvh - 60px);
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px #0003;
+  white-space: normal;
+}
+.translation-panel label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.translation-panel select {
+  width: 100%;
+  padding: 10px;
+  font: inherit;
+  background: white;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.translation-panel button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--red);
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.translation-panel p {
+  margin: 10px 0 0;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.translation-panel [role="status"] {
+  color: var(--deep);
 }
 .brand-row {
   display: grid;
@@ -1228,6 +1298,11 @@ footer {
   .utility-inner > div {
     width: 100%;
     justify-content: space-between;
+    gap: 8px;
+  }
+  .translation-panel {
+    inset-inline-start: 0;
+    inset-inline-end: auto;
   }
   .brand-row {
     grid-template-columns: auto 1fr auto;

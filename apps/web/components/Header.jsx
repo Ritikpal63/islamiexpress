@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Menu, Search, User, Newspaper, X } from "lucide-react";
 import { useState } from "react";
 import AdSlot from "./AdSlot";
+import LanguageTranslator from "./LanguageTranslator";
 
 const nav = [
   ["Latest", "/latest"],
@@ -31,6 +32,7 @@ export default function Header() {
             )}
           </span>
           <div>
+            <LanguageTranslator />
             <Link href="/epaper">
               <Newspaper size={14} /> E-Paper
             </Link>

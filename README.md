@@ -10,6 +10,7 @@ A full-stack starter for turning a daily print newspaper into a modern digital n
 - Lead story, featured stories, latest news, editor's picks and trending
 - Category pages and latest-news timeline
 - Search
+- Header translation menu: opens the current English news page in Google Translate, with common language shortcuts and access to all provider-supported languages.
 - Full article pages with NewsArticle JSON-LD
 - Visible author, publication time, location, article type and correction/update note
 - Related news
@@ -186,6 +187,12 @@ GET  /api/admin/ads
 ```
 
 ## Production services to connect
+
+### Reader translation
+
+The header's **Translate** menu opens Google Translate website translation in a new tab. Readers can select a common language in the menu, then switch to any other supported language in Google Translate. No API key is required. The original site remains in English. This does not create indexed multilingual editions or translate e-paper PDF images.
+
+Website translation requires a publicly accessible deployment; localhost/private-network previews show a message instead. Account and CMS pages are excluded. Google Translate availability varies by region, and automatic translations may contain errors. See [Google's website translation help](https://support.google.com/translate/answer/2534559).
 
 The repository intentionally does not contain provider secrets. Before production, connect:
 
