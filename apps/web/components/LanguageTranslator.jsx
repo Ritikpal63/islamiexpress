@@ -40,8 +40,8 @@ export default function LanguageTranslator() {
     [...page.searchParams.keys()].forEach((key) => {
       if (key !== "q" && key !== "page") page.searchParams.delete(key);
     });
-    const target = new URL("https://translate.google.com/");
-    target.search = new URLSearchParams({ sl: "en", tl: language === "more" ? "hi" : language, u: page.href, op: "websites" }).toString();
+    const target = new URL("https://translate.google.com/translate");
+    target.search = new URLSearchParams({ sl: "en", tl: language === "more" ? "hi" : language, u: page.href }).toString();
     window.open(target.href, "_blank", "noopener,noreferrer");
     setMessage("");
   }
@@ -58,7 +58,7 @@ export default function LanguageTranslator() {
           {languages.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
           <option value="more">More languages…</option>
         </select>
-        <button type="submit">{language === "more" ? "Choose in Google Translate ↗" : "Translate page ↗"}</button>
+        <button type="submit">{language === "more" ? "Open and choose a language ↗" : "Translate page ↗"}</button>
         <p>Opens Google Translate in a new tab. Choose any other supported language there.</p>
         <p>Automatic translations may contain errors.</p>
         {message && <p role="status">{message}</p>}
