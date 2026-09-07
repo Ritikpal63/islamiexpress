@@ -9,14 +9,11 @@ const nav = [
   ["Latest", "/latest"],
   ["India", "/category/india"],
   ["World", "/category/world"],
+  ["Delhi", "/category/delhi"],
+  ["Delhi-NCR", "/category/delhi-ncr"],
   ["Politics", "/category/politics"],
-  ["Business", "/category/business"],
   ["Sports", "/category/sports"],
   ["Entertainment", "/category/entertainment"],
-  ["Technology", "/category/technology"],
-  ["Health", "/category/health"],
-  ["Opinion", "/category/opinion"],
-  ["Fact Check", "/category/fact-check"],
 ];
 
 export default function Header() {
