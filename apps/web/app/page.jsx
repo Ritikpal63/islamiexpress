@@ -153,7 +153,7 @@ export default async function Home() {
                 title="YouTube video player"
                 frameBorder="0"
                 referrerPolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture;"
                 allowFullScreen
               ></iframe>
               {/* <Play />
