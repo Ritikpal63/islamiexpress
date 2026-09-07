@@ -1734,6 +1734,11 @@ footer {
 
 .bottom-banner-space {
   height: calc(clamp(90px, 15vw, 170px) + env(safe-area-inset-bottom, 0px));
+  transition: height 500ms ease-in-out;
+}
+
+.bottom-banner-space--closing {
+  height: 0;
 }
 
 .bottom-banner-ad {
@@ -1742,6 +1747,7 @@ footer {
   bottom: 0;
   z-index: 50;
   width: min(1100px, calc(100% - 24px));
+  max-width: calc(100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 24px);
   margin-inline: auto;
   padding: 0 8px calc(8px + env(safe-area-inset-bottom, 0px));
   background: var(--paper);
@@ -1772,6 +1778,7 @@ footer {
   place-items: center;
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   padding: 0;
   border: 0;
   border-radius: 6px;
@@ -1792,14 +1799,17 @@ footer {
 
 .bottom-banner-ad__reopen {
   position: fixed;
-  right: max(30%, env(safe-area-inset-right, 0px));
+  inset-inline: 0;
+  margin-inline: auto;
   bottom: 0;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  min-width: 640px;
+  width: min(640px, calc(100% - 24px));
+  max-width: calc(100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 24px);
+  min-width: 0;
   min-height: 44px;
   padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
   border: 1px solid var(--line);
@@ -1820,6 +1830,8 @@ footer {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 30dvh;
+  object-fit: contain;
 }
 
 @keyframes bottom-banner-enter {
@@ -1827,7 +1839,21 @@ footer {
   to { transform: translateY(0); }
 }
 
+.bottom-banner-ad--closing {
+  animation: bottom-banner-exit 500ms ease-in-out both;
+  pointer-events: none;
+}
+
+@keyframes bottom-banner-exit {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(100% + 32px)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .bottom-banner-space {
+    transition: none;
+  }
+
   .bottom-banner-ad {
     animation: none;
   }

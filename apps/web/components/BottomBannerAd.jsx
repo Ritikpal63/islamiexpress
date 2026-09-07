@@ -6,6 +6,7 @@ import { ChevronUp, X } from "lucide-react";
 export default function BottomBannerAd() {
   const [visible, setVisible] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [closing, setClosing] = useState(false);
   const toggleButton = useRef(null);
   const interacted = useRef(false);
 
@@ -14,9 +15,25 @@ export default function BottomBannerAd() {
   }, [collapsed]);
 
   function toggleAd() {
+    if (closing) return;
     interacted.current = true;
-    setCollapsed((value) => !value);
+    if (collapsed) {
+      setCollapsed(false);
+    } else if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCollapsed(true);
+    } else {
+      setClosing(true);
+    }
   }
+
+  useEffect(() => {
+    if (!closing) return;
+    const timer = window.setTimeout(() => {
+      setCollapsed(true);
+      setClosing(false);
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [closing]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setVisible(true), 800);
@@ -43,8 +60,14 @@ export default function BottomBannerAd() {
 
   return (
     <>
-      <div className="bottom-banner-space" aria-hidden="true" />
-      <aside className="bottom-banner-ad" aria-label="Advertisement">
+      <div
+        className={`bottom-banner-space${closing ? " bottom-banner-space--closing" : ""}`}
+        aria-hidden="true"
+      />
+      <aside
+        className={`bottom-banner-ad${closing ? " bottom-banner-ad--closing" : ""}`}
+        aria-label="Advertisement"
+      >
         <div className="bottom-banner-ad__header">
           <span>Advertisement</span>
           <button
@@ -53,6 +76,7 @@ export default function BottomBannerAd() {
             className="bottom-banner-ad__close"
             aria-label="Hide advertisement"
             aria-expanded={true}
+            aria-disabled={closing}
             onClick={toggleAd}
           >
             <X size={20} aria-hidden="true" />
