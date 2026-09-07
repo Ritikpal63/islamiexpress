@@ -145,11 +145,21 @@ export default async function Home() {
                 </Link>
               ))}
             </div>
-            <div className="video-promo">
-              <Play />
+            <div className="">
+              <iframe
+                width="100%"
+                height="200"
+                src="https://www.youtube.com/embed/fKNGw6kK0tg"
+                title="YouTube video player"
+                frameBorder="0"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                allowFullScreen
+              ></iframe>
+              {/* <Play />
               <small>VIDEO</small>
               <h3>Watch the latest reports, interviews and explainers</h3>
-              <Link href="/category/videos">Watch now →</Link>
+              <Link href="/category/videos">Watch now →</Link> */}
             </div>
             <AdSlot
               compact
@@ -159,7 +169,18 @@ export default async function Home() {
             />
           </aside>
         </div>
-        <section className="epaper-promo" style={{ backgroundColor: "#f9f9f9", marginTop: "20px", alignItems: "center", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+        <section
+          className="epaper-promo"
+          style={{
+            backgroundColor: "#f9f9f9",
+            marginTop: "20px",
+            alignItems: "center",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           {/* <div>
             <small>TODAY'S NEWSPAPER</small>
             <h2>Read Islami Express E-Paper</h2>
@@ -177,7 +198,11 @@ export default async function Home() {
               <span>DAILY E-PAPER</span>
             </div>
           </div> */}
-          <img src="/assets/News-Images/news1.jpeg" alt="" style={{ width: "100%", height: "400px" }} />
+          <img
+            src="/assets/News-Images/news1.jpeg"
+            alt=""
+            style={{ width: "100%", height: "400px" }}
+          />
         </section>
       </div>
     </>
