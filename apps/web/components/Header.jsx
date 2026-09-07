@@ -4,6 +4,7 @@ import { Menu, Search, User, Newspaper, X } from "lucide-react";
 import { useState } from "react";
 import AdSlot from "./AdSlot";
 import LanguageTranslator from "./LanguageTranslator";
+import AccountMenu from "./AccountMenu";
 
 const nav = [
   ["Latest", "/latest"],
@@ -34,9 +35,7 @@ export default function Header() {
               <Newspaper size={14} /> E-Paper
             </Link>
             <Link href="/saved">Saved</Link>
-            <Link href="/login">
-              <User size={14} /> Login
-            </Link>
+            <AccountMenu />
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default async function CategoryPage({ params }) {
   const d = await apiFetch(
     `/articles?category=${encodeURIComponent(slug)}&limit=30`,
   );
-  const items = d?.data?.length ? d.data : demoArticles;
+  const items = d?.data || (process.env.NODE_ENV === "development" ? demoArticles.filter(article => article.category_slug === slug) : []);
   const title = slug
     .replaceAll("-", " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
@@ -36,6 +36,7 @@ export default async function CategoryPage({ params }) {
         style={{ width: "1270px", height: "250px" }}
       />
       <div className="listing-grid">
+        {!items.length && <p>No published stories in this category yet.</p>}
         {items.map((a, i) => (
           <NewsCard article={a} key={a.id || i} />
         ))}

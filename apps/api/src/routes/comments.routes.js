@@ -10,10 +10,15 @@ router.get('/article/:articleId',asyncHandler(async(req,res)=>{
 }));
 
 router.post('/article/:articleId',requireAuth,asyncHandler(async(req,res)=>{
-  const body=(req.body.body||'').trim();
+  const body=typeof req.body?.body==='string'?req.body.body.trim():'';
   if(body.length<2||body.length>2000) return res.status(400).json({success:false,message:'Comment must be 2-2000 characters'});
-  const [[article]]=await pool.query('SELECT allow_comments FROM articles WHERE id=?',[req.params.articleId]);
-  if(!article||!article.allow_comments) return res.status(400).json({success:false,message:'Comments are closed'});
+  const [[article]]=await pool.query("SELECT allow_comments FROM articles WHERE id=? AND status='published' AND (published_at IS NULL OR published_at<=NOW())",[req.params.articleId]);
+  if(!article) return res.status(404).json({success:false,message:'Article not found'});
+  if(!article.allow_comments) return res.status(400).json({success:false,message:'Comments are closed'});
+  if (req.body.parent_id) {
+    const [parents]=await pool.query("SELECT id FROM comments WHERE id=? AND article_id=? AND status='approved'",[req.body.parent_id,req.params.articleId]);
+    if (!parents.length) return res.status(400).json({success:false,message:'Invalid parent comment'});
+  }
   const id=randomUUID();
   const autoApprove=process.env.AUTO_APPROVE_COMMENTS==='true';
   await pool.query('INSERT INTO comments(id,article_id,user_id,parent_id,body,status) VALUES(?,?,?,?,?,?)',[id,req.params.articleId,req.user.id,req.body.parent_id||null,body,autoApprove?'approved':'pending']);

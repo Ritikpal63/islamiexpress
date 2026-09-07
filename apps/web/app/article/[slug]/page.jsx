@@ -7,15 +7,18 @@ import EngagementBar from "@/components/EngagementBar";
 import Comments from "@/components/Comments";
 import NewsCard from "@/components/NewsCard";
 import AdSlot from "@/components/AdSlot";
+import { notFound } from "next/navigation";
+import sanitizeHtml from "sanitize-html";
 async function getArticle(slug) {
   const d = await apiFetch(`/articles/${slug}`, { next: { revalidate: 60 } });
   if (d?.data) return d.data;
-  const demo = demoArticles.find((x) => x.slug === slug) || demoArticles[0];
+  const demo = process.env.NODE_ENV === "development" && demoArticles.find((x) => x.slug === slug);
+  if (!demo) notFound();
   return {
     ...demo,
     body: `<p>${demo.summary}</p><p>Islami Express is designed to publish verified daily reporting with a clear distinction between news, opinion and sponsored material. This demonstration article shows the production article layout.</p><h2>A newsroom built for fast, responsible publishing</h2><p>Reporters can prepare stories, editors can review and correct them, and the publishing system can place important coverage across the home page, category pages, search, RSS feeds and the e-paper archive.</p><p>Readers can like stories, save them for later, share them and participate in moderated discussions.</p>`,
     related: demoArticles.slice(1, 5),
-    allow_comments: true,
+    allow_comments: false,
     view_count: 3182,
     like_count: 124,
     comment_count: 18,
@@ -61,7 +64,7 @@ export default async function ArticlePage({ params }) {
       <article className="article-main">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         <div className="breadcrumbs">
           <Link href="/">Home</Link> /{" "}
@@ -108,7 +111,7 @@ export default async function ArticlePage({ params }) {
         <figure className="article-figure">
           <div>
             <Image
-              src={fallbackImage2 || a.featured_image || fallbackImage}
+              src={a.featured_image || fallbackImage2 || fallbackImage}
               alt={a.title}
               fill
               priority
@@ -123,7 +126,7 @@ export default async function ArticlePage({ params }) {
         </figure>
         <div
           className="article-body"
-          dangerouslySetInnerHTML={{ __html: a.body }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(a.body || "") }}
         />
         <AdSlot
           compact

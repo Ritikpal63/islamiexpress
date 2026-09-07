@@ -22,6 +22,7 @@ app.use('/api/admin',require('./routes/admin.routes'));
 app.use((_req,res)=>res.status(404).json({success:false,message:'Route not found'}));
 app.use((err,_req,res,_next)=>{
   console.error(err);
-  res.status(err.status||500).json({success:false,message:process.env.NODE_ENV==='production'?'Internal server error':err.message});
+  const status=err.status||500;
+  res.status(status).json({success:false,message:process.env.NODE_ENV==='production'&&status>=500?'Internal server error':err.message});
 });
 module.exports=app;

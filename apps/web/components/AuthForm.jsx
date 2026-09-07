@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { clientApi } from "@/lib/api";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { clearLegacySession, safeReturnPath } from "@/lib/auth.mjs";
 export default function AuthForm({ mode = "login" }) {
   const router = useRouter();
   const params = useSearchParams();
@@ -13,18 +14,30 @@ export default function AuthForm({ mode = "login" }) {
     password: "",
   });
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const pending = useRef(false);
+  const next = safeReturnPath(params.get("next"));
   const submit = async (e) => {
     e.preventDefault();
+    if (pending.current) return;
+    pending.current = true;
+    setSubmitting(true);
+    setError("");
     try {
       const d = await clientApi(`/auth/${mode}`, {
         method: "POST",
         body: JSON.stringify(form),
       });
-      localStorage.setItem("ie_token", d.token);
-      localStorage.setItem("ie_user", JSON.stringify(d.user));
-      router.push(params.get("next") || "/");
+      if (!d.user?.id) throw new Error("Login could not be completed. Please try again.");
+      clearLegacySession();
+      window.dispatchEvent(new Event("ie-auth-change"));
+      router.replace(params.has("next") ? next : ["editor", "admin", "super_admin"].includes(d.user.role) ? "/admin/articles" : "/");
+      router.refresh();
     } catch (e) {
       setError(e.message);
+    } finally {
+      pending.current = false;
+      setSubmitting(false);
     }
   };
   return (
@@ -62,6 +75,7 @@ export default function AuthForm({ mode = "login" }) {
           Email
           <input
             type="email"
+            autoComplete="email"
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -71,25 +85,26 @@ export default function AuthForm({ mode = "login" }) {
           Password
           <input
             type="password"
+            autoComplete={mode === "login" ? "current-password" : "new-password"}
             minLength={8}
             required
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
         </label>
-        {error && <div className="error-msg">{error}</div>}
-        <button className="primary-btn">
-          {mode === "login" ? "Login" : "Create account"}
+        {error && <div className="error-msg" role="alert">{error}</div>}
+        <button className="primary-btn" disabled={submitting}>
+          {submitting ? "Please wait…" : mode === "login" ? "Login" : "Create account"}
         </button>
       </form>
       <div className="auth-switch">
         {mode === "login" ? (
           <>
-            New reader? <Link href="/register">Create account</Link>
+            New reader? <Link href={`/register?next=${encodeURIComponent(next)}`}>Create account</Link>
           </>
         ) : (
           <>
-            Already registered? <Link href="/login">Login</Link>
+            Already registered? <Link href={`/login?next=${encodeURIComponent(next)}`}>Login</Link>
           </>
         )}
       </div>

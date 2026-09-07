@@ -1550,6 +1550,47 @@ footer {
   display: grid;
   gap: 14px;
 }
+
+.cms-form fieldset {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.cms-grid > *, .cms-list article > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cms-actions, .account-menu, .account-menu > span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.account-menu button {
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.cms-actions button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.cms-form button:disabled, .cms-actions button:disabled,
+.comment-form button:disabled, .auth-card button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
 .cms-form label {
   font-size: 12px;
   font-weight: 800;

@@ -1,11 +1,15 @@
 {
   "name": "islamiexpress",
   "private": true,
-  "workspaces": ["apps/*"],
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "dev:api": "npm --workspace apps/api run dev",
     "dev:web": "npm --workspace apps/web run dev",
     "start:api": "npm --workspace apps/api start",
-    "build:web": "npm --workspace apps/web run build"
+    "build:web": "npm --workspace apps/web run build",
+    "test": "node tests/newsroom.test.cjs && node tests/web-session.test.cjs",
+    "test:browser": "node tests/browser-flows.cjs"
   }
 }

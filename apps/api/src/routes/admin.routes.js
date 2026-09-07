@@ -41,6 +41,12 @@ router.get('/revisions/:articleId',asyncHandler(async(req,res)=>{
   res.json({success:true,data:rows});
 }));
 
+router.get('/articles/:id',asyncHandler(async(req,res)=>{
+  const [rows]=await pool.query('SELECT * FROM articles WHERE id=? LIMIT 1',[req.params.id]);
+  if (!rows.length) return res.status(404).json({success:false,message:'Article not found'});
+  res.json({success:true,data:rows[0]});
+}));
+
 router.get('/users',allowRoles('admin','super_admin'),asyncHandler(async(req,res)=>{
   const [rows]=await pool.query(`SELECT id,name,email,role,status,created_at FROM users ORDER BY created_at DESC LIMIT 200`);
   res.json({success:true,data:rows});

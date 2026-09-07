@@ -229,3 +229,28 @@ Replace all starter transparency copy with **real, verified publication informat
 
 Review editorial, advertising, privacy, cookie, comments and moderation policies with the newspaper's management/legal adviser. Configure backups, HTTPS, DB least-privilege credentials, secret management, upload validation, CSP, logging/monitoring and CDN/DDoS protection.
 # islamiexpress
+
+## Authenticated comments and newsroom publishing
+
+The browser now calls the web app's own `/api/*` routes. The web server forwards requests to Express and stores login sessions in a same-site, HttpOnly cookie. New sessions do not store a JWT in localStorage. Existing bearer-token sessions remain supported until the reader logs in again. Login returns readers to the requested article and restores their comment draft in the same tab. Only an HTTP 401 triggers a login redirect; network errors and publication errors stay on the current page.
+
+Configure **`API_URL` on the Vercel web project** to the real Express backend URL, including `/api`, such as `https://your-backend.example/api`. This value belongs on the server; do not point it at the Vercel frontend or localhost. `NEXT_PUBLIC_API_URL` is retained only as a fallback for existing configuration. On Vercel, the API route rejects localhost and non-HTTPS backends instead of directing visitors to their own machines. For local development, set `API_URL=http://localhost:8000/api` in `apps/web/.env.local`, or use the default.
+
+The Express service must have its MySQL connection variables and a persistent, random `JWT_SECRET` (at least 32 characters in production). Use the same secret across API instances and restarts. Load `database/schema.sql` and the initial categories from `database/seed.sql` only when provisioning a new database. Create the administrator with the documented `create-admin` command; public registration always creates a reader account. Do not rerun seed data against an existing production database.
+
+At `/admin/articles`, an editor/admin can select an active category, write a story, choose its language, enable comments, save a draft, publish, or edit an existing story. The API validates category existence, enums, text lengths, flags and image URLs; sanitizes article HTML; and checks the user's current database role and account status on authenticated requests. Article edits and revision records are written in one transaction. Successful saves invalidate public-page caches. Scheduled publishing still requires the existing long-running Express worker; the editor offers draft/review/published states rather than promising scheduling from Vercel.
+
+Empty production sections no longer substitute demonstration articles. A missing article no longer opens an unrelated demo story. Development demo articles cannot accept comments because they have no persisted article record.
+
+### Regression checks
+
+```bash
+npm test
+npm run build:web
+# Uses an installed Chromium browser and local fixture API, with no real DB writes:
+CHROMIUM_PATH=/usr/bin/chromium npm run test:browser
+```
+
+`npm test` covers session forwarding, cookie properties, error status handling, redirect validation, active categories, article sanitization, role checks, comment submission, and revision transactions using mocked database/upstream responses. The browser check runs against the production build using local test data and checks the reader login/comment flow and admin publishing/editing at a mobile viewport. It requires permission to bind local ports and launch Chromium. Set `TEST_WEB_PORT` if port 3219 is occupied. Run a fresh production build after browser tests before deploying.
+
+Deployment requires both the updated Express API and updated web app. The automated checks do not verify your production MySQL connectivity, credentials, or deployment environment. Verify one reader login/comment and one administrator draft/publish action on your staging deployment with the real database before launch.

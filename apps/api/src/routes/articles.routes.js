@@ -3,9 +3,10 @@ const { randomUUID } = require('crypto');
 const pool = require('../config/db');
 const asyncHandler = require('../utils/asyncHandler');
 const slugify = require('../utils/slug');
+const articleInput = require('../utils/articleInput');
 const { optionalAuth, requireAuth, allowRoles } = require('../middleware/auth');
 
-const articleSelect = `SELECT a.id,a.author_id,a.title,a.slug,a.summary,a.body,a.featured_image,a.image_caption,a.image_credit,a.location,a.language,a.status,a.news_type,a.is_featured,a.is_top_story,a.is_editors_pick,a.allow_comments,a.seo_title,a.seo_description,a.canonical_url,a.correction_note,a.published_at,a.updated_at,a.created_at,c.name category_name,c.slug category_slug,u.name author_name,u.avatar_url author_avatar,u.bio author_bio,
+const articleSelect = `SELECT a.id,a.author_id,a.category_id,a.title,a.slug,a.summary,a.body,a.featured_image,a.image_caption,a.image_credit,a.location,a.language,a.status,a.news_type,a.is_featured,a.is_top_story,a.is_editors_pick,a.allow_comments,a.seo_title,a.seo_description,a.canonical_url,a.correction_note,a.published_at,a.updated_at,a.created_at,c.name category_name,c.slug category_slug,u.name author_name,u.avatar_url author_avatar,u.bio author_bio,
 (SELECT COUNT(*) FROM article_likes l WHERE l.article_id=a.id) like_count,
 (SELECT COUNT(*) FROM comments cm WHERE cm.article_id=a.id AND cm.status='approved') comment_count,
 (SELECT COUNT(*) FROM article_shares s WHERE s.article_id=a.id) share_count,
@@ -38,7 +39,7 @@ router.get('/trending', asyncHandler(async (req,res) => {
 }));
 
 router.get('/:slug', optionalAuth, asyncHandler(async (req,res) => {
-  const [rows]=await pool.query(`${articleSelect} WHERE a.slug=? AND a.status='published' LIMIT 1`,[req.params.slug]);
+  const [rows]=await pool.query(`${articleSelect} WHERE a.slug=? AND a.status='published' AND (a.published_at IS NULL OR a.published_at<=NOW()) LIMIT 1`,[req.params.slug]);
   if (!rows.length) return res.status(404).json({success:false,message:'Article not found'});
   const article=rows[0];
   if (req.user) {
@@ -48,21 +49,22 @@ router.get('/:slug', optionalAuth, asyncHandler(async (req,res) => {
     ]);
     article.liked_by_me=like.length>0; article.saved_by_me=saved.length>0;
   }
-  const [related]=await pool.query(`${articleSelect} WHERE a.status='published' AND a.category_id=(SELECT category_id FROM articles WHERE id=?) AND a.id<>? ORDER BY a.published_at DESC LIMIT 4`,[article.id,article.id]);
+  const [related]=await pool.query(`${articleSelect} WHERE a.status='published' AND (a.published_at IS NULL OR a.published_at<=NOW()) AND a.category_id=(SELECT category_id FROM articles WHERE id=?) AND a.id<>? ORDER BY a.published_at DESC LIMIT 4`,[article.id,article.id]);
   article.related=related;
   res.json({success:true,data:article});
 }));
 
 router.post('/', requireAuth, allowRoles('reporter','editor','admin','super_admin'), asyncHandler(async (req,res) => {
-  const b=req.body;
-  if(!b.title||!b.body||!b.category_id) return res.status(400).json({success:false,message:'title, body and category_id are required'});
+  const b=articleInput(req.body);
+  const [categories]=await pool.query('SELECT id FROM categories WHERE id=? AND is_active=1',[b.category_id]);
+  if (!categories.length) return res.status(400).json({success:false,message:'Choose an active category'});
   const id=randomUUID();
   const slug=(b.slug?slugify(b.slug):slugify(b.title))+'-'+id.slice(0,8);
   const canPublish=['editor','admin','super_admin'].includes(req.user.role);
-  let status=b.status||'draft'; if (status==='published'&&!canPublish) status='review';
+  let status=b.status||'draft'; if (['published','scheduled'].includes(status)&&!canPublish) status='review';
   const publishedAt=status==='published' ? new Date() : null;
   await pool.query(`INSERT INTO articles(id,title,slug,summary,body,featured_image,image_caption,image_credit,category_id,author_id,location,language,status,news_type,is_featured,is_top_story,is_editors_pick,allow_comments,seo_title,seo_description,canonical_url,source_name,source_url,scheduled_at,published_at)
-  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[id,b.title,slug,b.summary||null,b.body,b.featured_image||null,b.image_caption||null,b.image_credit||null,b.category_id,req.user.id,b.location||null,b.language||'en',status,b.news_type||'normal',!!b.is_featured,!!b.is_top_story,!!b.is_editors_pick,b.allow_comments!==false,b.seo_title||null,b.seo_description||null,b.canonical_url||null,b.source_name||null,b.source_url||null,b.scheduled_at||null,publishedAt]);
+  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[id,b.title,slug,b.summary||null,b.body,b.featured_image||null,b.image_caption||null,b.image_credit||null,b.category_id,req.user.id,b.location||null,b.language||'en',status,b.news_type||'normal',!!b.is_featured,!!b.is_top_story,!!b.is_editors_pick,b.allow_comments!==false,b.seo_title||null,b.seo_description||null,b.canonical_url||null,b.source_name||null,b.source_url||null,status==='scheduled'?b.scheduled_at:null,publishedAt]);
   res.status(201).json({success:true,data:{id,slug,status}});
 }));
 
@@ -70,12 +72,24 @@ router.put('/:id', requireAuth, allowRoles('reporter','editor','admin','super_ad
   const [rows]=await pool.query('SELECT * FROM articles WHERE id=?',[req.params.id]);
   const current=rows[0]; if(!current) return res.status(404).json({success:false,message:'Article not found'});
   if(req.user.role==='reporter' && current.author_id!==req.user.id) return res.status(403).json({success:false,message:'You can edit only your articles'});
-  await pool.query('INSERT INTO article_revisions(article_id,editor_id,title,summary,body,change_note) VALUES(?,?,?,?,?,?)',[current.id,req.user.id,current.title,current.summary,current.body,req.body.change_note||'Article updated']);
-  const b=req.body; const canPublish=['editor','admin','super_admin'].includes(req.user.role);
-  let status=b.status??current.status; if(status==='published'&&!canPublish) status='review';
-  await pool.query(`UPDATE articles SET title=?,summary=?,body=?,featured_image=?,category_id=?,location=?,status=?,news_type=?,is_featured=?,is_top_story=?,is_editors_pick=?,allow_comments=?,seo_title=?,seo_description=?,correction_note=?,published_at=CASE WHEN ?='published' AND published_at IS NULL THEN NOW() ELSE published_at END WHERE id=?`,[
-    b.title??current.title,b.summary??current.summary,b.body??current.body,b.featured_image??current.featured_image,b.category_id??current.category_id,b.location??current.location,status,b.news_type??current.news_type,b.is_featured??current.is_featured,b.is_top_story??current.is_top_story,b.is_editors_pick??current.is_editors_pick,b.allow_comments??current.allow_comments,b.seo_title??current.seo_title,b.seo_description??current.seo_description,b.correction_note??current.correction_note,status,current.id]);
-  res.json({success:true,message:'Article updated'});
+  const b=articleInput(req.body,current);
+  const [categories]=await pool.query('SELECT id FROM categories WHERE id=? AND is_active=1',[b.category_id]);
+  if (!categories.length) return res.status(400).json({success:false,message:'Choose an active category'});
+  const canPublish=['editor','admin','super_admin'].includes(req.user.role);
+  let status=b.status;
+  if (['published','scheduled'].includes(status)&&!canPublish) status='review';
+  const connection=await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    await connection.query('INSERT INTO article_revisions(article_id,editor_id,title,summary,body,change_note) VALUES(?,?,?,?,?,?)',[current.id,req.user.id,current.title,current.summary,current.body,b.change_note||'Article updated']);
+    await connection.query(`UPDATE articles SET title=?,summary=?,body=?,featured_image=?,category_id=?,location=?,language=?,status=?,news_type=?,is_featured=?,is_top_story=?,is_editors_pick=?,allow_comments=?,seo_title=?,seo_description=?,correction_note=?,scheduled_at=?,published_at=CASE WHEN ?='published' AND published_at IS NULL THEN NOW() ELSE published_at END WHERE id=?`,[
+      b.title,b.summary||null,b.body,b.featured_image||null,b.category_id,b.location||null,b.language,status,b.news_type,b.is_featured,b.is_top_story,b.is_editors_pick,b.allow_comments,b.seo_title||null,b.seo_description||null,b.correction_note||null,status==='scheduled'?b.scheduled_at:null,status,current.id]);
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally { connection.release(); }
+  res.json({success:true,data:{id:current.id,slug:current.slug,status},message:'Article updated'});
 }));
 
 module.exports=router;
