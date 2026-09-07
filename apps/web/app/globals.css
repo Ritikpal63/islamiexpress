@@ -588,6 +588,8 @@ textarea {
   align-items: center;
   /* padding: 45px 7%; */
   overflow: hidden;
+  /* height: 330px; */
+  /* object-fit: cover; */
 }
 .epaper-promo small {
   color: #ff575f;
@@ -1728,4 +1730,105 @@ footer {
 
 .ad-slot.ad-slot--image {
   min-height: 0;
+}
+
+.bottom-banner-space {
+  height: calc(clamp(90px, 15vw, 170px) + env(safe-area-inset-bottom, 0px));
+}
+
+.bottom-banner-ad {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  width: min(1100px, calc(100% - 24px));
+  margin-inline: auto;
+  padding: 0 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -6px 28px #0003;
+  animation: bottom-banner-enter 400ms ease-out both;
+}
+
+.bottom-banner-ad__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding-left: 4px;
+}
+
+.bottom-banner-ad__header span {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.bottom-banner-ad__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.bottom-banner-ad__close:hover {
+  background: var(--soft);
+}
+
+.bottom-banner-ad__close:focus-visible,
+.bottom-banner-ad__reopen:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -3px;
+}
+
+.bottom-banner-ad__reopen {
+  position: fixed;
+  right: max(30%, env(safe-area-inset-right, 0px));
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 640px;
+  min-height: 44px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 -3px 14px #0002;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bottom-banner-ad__reopen:hover {
+  background: var(--soft);
+}
+
+.bottom-banner-ad__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes bottom-banner-enter {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-banner-ad {
+    animation: none;
+  }
 }

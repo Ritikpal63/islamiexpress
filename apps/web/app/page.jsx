@@ -201,7 +201,7 @@ export default async function Home() {
           <img
             src="/assets/News-Images/news1.jpeg"
             alt=""
-            style={{ width: "100%", height: "400px" }}
+            style={{ width: "100%", height: "440px" }}
           />
         </section>
       </div>

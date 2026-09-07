@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BottomBannerAd from "@/components/BottomBannerAd";
 export const metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main>{children}</main>
         <Footer />
+        <BottomBannerAd />
       </body>
     </html>
   );
