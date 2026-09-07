@@ -11,7 +11,7 @@ import AdSlot from "@/components/AdSlot";
 export const revalidate = 60;
 async function list(query = "") {
   const d = await apiFetch(`/articles?limit=12${query}`);
-  return d?.data || (process.env.NODE_ENV === "development" ? demoArticles : []);
+  return d?.data?.length ? d.data : demoArticles;
 }
 export default async function Home() {
   const [all, breaking, trending] = await Promise.all([
@@ -19,9 +19,8 @@ export default async function Home() {
     list("&type=breaking"),
     apiFetch("/articles/trending?limit=6"),
   ]);
-  const trend = trending?.data?.length ? trending.data : all.slice(1);
+  const trend = trending?.data?.length ? trending.data : demoArticles.slice(1);
   const lead = all[0];
-  if (!lead) return <div className="container empty-state"><h1>Islami Express</h1><p>No news is available right now. Please check back shortly.</p></div>;
   const side = all.slice(1, 5);
   const groups = {
     India: all.filter((x) => x.category_slug === "india"),
@@ -43,7 +42,7 @@ export default async function Home() {
             <Link href={`/article/${lead.slug}`}>
               <div className="lead-image">
                 <Image
-                  src={fallbackImage2 ||lead.featured_image ||  fallbackImage}
+                  src={fallbackImage2 || lead.featured_image || fallbackImage}
                   alt={lead.title}
                   fill
                   priority
@@ -92,13 +91,13 @@ export default async function Home() {
             <Section
               title="India"
               slug="india"
-              articles={groups.India}
+              articles={groups.India.length ? groups.India : all.slice(1, 5)}
             />
             <Section
               title="Politics"
               slug="politics"
               articles={
-                groups.Politics
+                groups.Politics.length ? groups.Politics : all.slice(2, 6)
               }
             />
             <AdSlot
@@ -111,19 +110,21 @@ export default async function Home() {
               title="Business"
               slug="business"
               articles={
-                groups.Business
+                groups.Business.length ? groups.Business : all.slice(0, 4)
               }
             />
             <Section
               title="Sports"
               slug="sports"
-              articles={groups.Sports}
+              articles={groups.Sports.length ? groups.Sports : all.slice(2, 6)}
             />
             <Section
               title="Entertainment"
               slug="entertainment"
               articles={
-                groups.Entertainment
+                groups.Entertainment.length
+                  ? groups.Entertainment
+                  : all.slice(1, 5)
               }
             />
           </div>
