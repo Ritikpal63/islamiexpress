@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/skygrows/younmeconnect.com/api"
+PassengerBaseURI "/api"
+PassengerNodejs "/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node"
+PassengerAppType node
+PassengerStartupFile src/server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END

@@ -1,0 +1,798 @@
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+    at Module.load (node:internal/modules/cjs/loader:1076:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+    at Module.require (node:internal/modules/cjs/loader:1100:19)
+    at require (node:internal/modules/cjs/helpers:119:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1198:14)
+/home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js:1
+const htmlparser = require('htmlparser2');
+                   ^
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/htmlparser2/dist/index.js from /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js not supported.
+Instead change the require of /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/htmlparser2/dist/index.js in /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (/home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js:1:20)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/utils/articleInput.js:1:22)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/routes/articles.routes.js:6:22)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/app.js:22:25)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:13:13)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5) {
+  code: 'ERR_REQUIRE_ESM'
+}
+/home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js:1
+const htmlparser = require('htmlparser2');
+                   ^
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/htmlparser2/dist/index.js from /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js not supported.
+Instead change the require of /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/htmlparser2/dist/index.js in /home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (/home/skygrows/nodevenv/younmeconnect.com/api/16/lib/node_modules/sanitize-html/index.js:1:20)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/utils/articleInput.js:1:22)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/routes/articles.routes.js:6:22)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/app.js:22:25)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:13:13)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5) {
+  code: 'ERR_REQUIRE_ESM'
+}
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- /home/skygrows/younmeconnect.com/api/src/server.js
+- /usr/local/lsws/fcgi-bin/lsnode.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/skygrows/younmeconnect.com/api/src/server.js',
+    '/usr/local/lsws/fcgi-bin/lsnode.js'
+  ]
+}
+
+Node.js v20.20.2
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- /home/skygrows/younmeconnect.com/api/src/server.js
+- /usr/local/lsws/fcgi-bin/lsnode.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/skygrows/younmeconnect.com/api/src/server.js',
+    '/usr/local/lsws/fcgi-bin/lsnode.js'
+  ]
+}
+
+Node.js v20.20.2
+node[1923]: pthread_create: Resource temporarily unavailable
+node[5141]: pthread_create: Resource temporarily unavailable
+node[7054]: pthread_create: Resource temporarily unavailable
+node[64617]: pthread_create: Resource temporarily unavailable
+node[541]: pthread_create: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 9: /activate: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 10: /set_env_vars.py: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 12: /usr/bin/node: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 9: /activate: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 10: /set_env_vars.py: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 12: /usr/bin/node: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 9: /activate: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 10: /set_env_vars.py: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 12: /usr/bin/node: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 10: /set_env_vars.py: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 12: /usr/bin/node: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 9: /activate: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 10: /set_env_vars.py: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: line 12: /usr/bin/node: No such file or directory
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/node: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: Resource temporarily unavailable
+/home/skygrows/nodevenv/younmeconnect.com/api/20/bin/activate: fork: retry: No child processes
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+/home/skygrows/younmeconnect.com/api/src/server.js:6
+  throw new Error(
+  ^
+
+Error: Set a persistent JWT_SECRET of at least 32 characters before starting the production API.
+    at Object.<anonymous> (/home/skygrows/younmeconnect.com/api/src/server.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at startApplication (/usr/local/lsws/fcgi-bin/lsnode.js:426:15)
+    at Object.<anonymous> (/usr/local/lsws/fcgi-bin/lsnode.js:57:5)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+
+Node.js v20.20.2
+Scheduler: write ECONNRESET
+Scheduler: 
+Scheduler: 
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: read ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: read ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: read ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: 
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: read ECONNRESET
+Scheduler: write ECONNRESET
+Scheduler: write ECONNRESET

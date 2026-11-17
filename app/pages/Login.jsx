@@ -1,0 +1,1 @@
+import AuthForm from "@/components/AuthForm";import usePageMeta from "@/hooks/usePageMeta";export default function Login(){usePageMeta({title:"Reader Login"});return <div className="auth-page"><AuthForm mode="login"/></div>}

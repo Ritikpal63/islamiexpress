@@ -1,0 +1,25 @@
+ISLAMI EXPRESS - CPANEL FIXED BUILD V2
+
+IMPORTANT: Do not extract this on top of the old build without cleaning it first.
+1. In the document root for younmeconnect.com, keep a backup if needed.
+2. Delete the old frontend files/folders: app/, vendor/, assets/, index.html, styles.css and old .htaccess.
+3. Upload and extract ALL files from this ZIP directly into the domain document root.
+4. Confirm these URLs exist in File Manager:
+   /index.html
+   /app/main.js
+   /vendor/react-compat-v2.js
+   /vendor/react-jsx-runtime-compat-v2.js
+   /assets/ads/...
+5. Open younmeconnect.com in a private/incognito window once after deployment.
+
+This V2 fixes the blank page from the previous build. The previous Vite-cache
+React modules only exposed default exports, while the app imports named React
+and JSX-runtime exports. Compatibility wrapper modules now expose the required
+named exports and use cache-busting filenames.
+
+Frontend API base remains /api on the same domain.
+
+Email OTP authentication setup
+- Apply api/migrations/001_email_otp.sql to the existing database before restarting the API. New database setups can import the updated api/schema.sql.
+- Configure EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_FROM in the API environment. The API does not issue a session until the email code is verified.
+- Registration codes expire after 10 minutes. Login requires a fresh code on every password sign-in.

@@ -1,0 +1,1 @@
+import AuthForm from "@/components/AuthForm";import usePageMeta from "@/hooks/usePageMeta";export default function Register(){usePageMeta({title:"Create Reader Account"});return <div className="auth-page"><AuthForm mode="register"/></div>}

@@ -1,0 +1,80 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import usePageMeta from "@/hooks/usePageMeta";
+import { clientApi } from "@/lib/api";
+import {
+  FileText,
+  Users,
+  MessageSquare,
+  Eye,
+  ThumbsUp,
+  Share2,
+  Bookmark,
+} from "lucide-react";
+export default function Admin() {
+  usePageMeta({ title: "Editorial Dashboard" });
+  const [data, setData] = useState(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    clientApi("/admin/dashboard")
+      .then((d) => setData(d.data))
+      .catch((e) => setError(e.message));
+  }, []);
+  if (error)
+    return (
+      <div className="container admin-page">
+        <div className="empty-state">
+          <h2>CMS access required</h2>
+          <p>
+            {error}. Login with an editor/admin account to view the newsroom
+            dashboard.
+          </p>
+        </div>
+      </div>
+    );
+  if (!data)
+    return <div className="container admin-page">Loading dashboard…</div>;
+  const cards = [
+    [FileText, "Published", data.articles.published],
+    [Users, "Readers", data.readers.total],
+    [MessageSquare, "Pending comments", data.comments.pending],
+    [Eye, "Views today", data.today_views],
+    [ThumbsUp, "Likes today", data.engagement.likes],
+    [Share2, "Shares today", data.engagement.shares],
+    [Bookmark, "Saves today", data.engagement.saves],
+  ];
+  return (
+    <div className="container admin-page">
+      <div className="page-heading">
+        <span>NEWSROOM CMS</span>
+        <h1>Editorial Dashboard</h1>
+        <p>Publishing and reader engagement overview.</p>
+        <div className="admin-dashboard-links">
+          <Link to="/admin/articles">Manage news</Link>
+          <Link to="/admin/categories">Manage categories</Link>
+          <Link to="/admin/comments">Moderate comments</Link>
+          <Link to="/admin/ads">Manage advertisements</Link>
+        </div>
+      </div>
+      <div className="stat-grid">
+        {cards.map(([Icon, n, v]) => (
+          <div className="stat-card" key={n}>
+            <Icon />
+            <span>{n}</span>
+            <b>{Number(v || 0).toLocaleString("en-IN")}</b>
+          </div>
+        ))}
+      </div>
+      <section className="admin-panel">
+        <h2>Top stories today</h2>
+        {data.top.map((x, i) => (
+          <div className="admin-row" key={x.slug}>
+            <b>{i + 1}</b>
+            <span>{x.title}</span>
+            <em>{x.views} views</em>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}

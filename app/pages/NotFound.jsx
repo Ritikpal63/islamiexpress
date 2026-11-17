@@ -1,0 +1,1 @@
+import{Link}from"react-router-dom";import usePageMeta from"@/hooks/usePageMeta";export default function NotFound(){usePageMeta({title:"Page Not Found"});return <div className="container trust-page"><div className="empty-state"><h1>404</h1><h3>Page not found</h3><p>The page you requested does not exist.</p><Link className="primary-btn" to="/">Go to homepage</Link></div></div>}
