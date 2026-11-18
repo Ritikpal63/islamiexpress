@@ -445,6 +445,7 @@ export default function AdminArticles() {
                 setForm({ ...emptyForm });
                 setError("");
               }}
+              style={{ width: "100%", padding: "10px 0px", marginTop: 10, backgroundColor: "#eee", color: "#333", border: "1px solid #ccc", cursor: "pointer"}}
             >
               Cancel editing
             </button>

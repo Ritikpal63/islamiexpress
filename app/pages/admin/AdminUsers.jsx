@@ -14,6 +14,7 @@ const roleLabels = {
 export default function AdminUsers() {
   usePageMeta({ title: "Manage Users" });
   const [users, setUsers] = useState([]);
+  const [emailSearch, setEmailSearch] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState(null);
@@ -65,6 +66,9 @@ export default function AdminUsers() {
   const availableRoles = isSuperAdmin
     ? ["reader", "reporter", "editor", "admin", "super_admin"]
     : ["reporter", "editor"];
+  const filteredUsers = users.filter((user) =>
+    user.email?.toLowerCase().includes(emailSearch.trim().toLowerCase()),
+  );
 
   return (
     <div className="container admin-page">
@@ -81,8 +85,18 @@ export default function AdminUsers() {
       {error && <p className="error-msg" role="alert">{error}</p>}
       {message && <p className="form-msg" role="status">{message}</p>}
       <section className="cms-list" aria-label="User accounts">
-        <h2>Accounts ({users.length})</h2>
-        {users.map((user) => {
+        <h2>Accounts ({filteredUsers.length}{emailSearch ? ` of ${users.length}` : ""})</h2>
+        <label className="admin-user-search">
+          Search by email
+          <input
+            type="search"
+            value={emailSearch}
+            onChange={(event) => setEmailSearch(event.target.value)}
+            placeholder="Enter an email address"
+            aria-label="Search users by email"
+          />
+        </label>
+        {filteredUsers.map((user) => {
           const isSelf = user.id === currentUser?.id;
           const isProtectedAdmin = ["admin", "super_admin"].includes(user.role) && !isSuperAdmin;
           const mayAssign = !isSelf && !isProtectedAdmin && (isSuperAdmin || ["reader", "reporter", "editor"].includes(user.role));
@@ -125,6 +139,7 @@ export default function AdminUsers() {
           );
         })}
         {!users.length && <p>No user accounts found.</p>}
+        {users.length > 0 && !filteredUsers.length && <p>No users match that email.</p>}
       </section>
     </div>
   );

@@ -1684,6 +1684,19 @@ footer {
   justify-content: space-between;
   gap: 15px;
 }
+.admin-user-search {
+  display: grid;
+  gap: 6px;
+  max-width: 420px;
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.admin-user-search input {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #d3d6da;
+}
 .cms-list small {
   color: var(--red);
   font-size: 10px;
