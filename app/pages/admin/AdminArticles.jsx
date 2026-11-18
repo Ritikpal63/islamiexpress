@@ -18,7 +18,7 @@ const emptyForm = {
   is_editors_pick: false,
   allow_comments: true,
 };
-const editors = ["editor", "admin", "super_admin"];
+const newsroomRoles = ["reporter", "editor", "admin", "super_admin"];
 
 export default function AdminArticles() {
   usePageMeta({ title: "Manage News" });
@@ -28,6 +28,7 @@ export default function AdminArticles() {
   const [editing, setEditing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
+  const [userRole, setUserRole] = useState("");
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -52,13 +53,15 @@ export default function AdminArticles() {
     setError("");
     try {
       const session = await clientApi("/auth/me");
-      if (!editors.includes(session.data?.role)) {
+      if (!newsroomRoles.includes(session.data?.role)) {
         setAuthorized(false);
         setError(
-          "An editor or administrator account is required to manage news.",
+          "A newsroom account is required to manage news.",
         );
         return;
       }
+      setUserRole(session.data.role);
+      if (session.data.role === "reporter") setForm((current) => ({ ...current, status: "review" }));
       const [news, cats] = await Promise.all([
         clientApi("/admin/articles"),
         clientApi("/public/categories"),
@@ -184,7 +187,9 @@ export default function AdminArticles() {
       setMessage(
         result.data.status === "published"
           ? "Article published. It is available in its selected category."
-          : `Article saved as ${result.data.status}.`,
+          : userRole === "reporter" && result.data.status === "review"
+            ? "Article submitted for editorial review."
+            : `Article saved as ${result.data.status}.`,
       );
       setForm({ ...emptyForm });
       setEditing(null);
@@ -229,9 +234,14 @@ export default function AdminArticles() {
         <span>NEWSROOM CMS</span>
         <h1>Manage news</h1>
         <p>
-          Write a story, choose its category, and save a draft or publish it.
+          {userRole === "reporter"
+            ? "Submit a story for review. Editors and administrators decide when it is published."
+            : "Write, review, and publish newsroom stories."}
         </p>
-        <div className="admin-dashboard-links"><Link to="/admin">Dashboard</Link><Link to="/admin/categories">Manage categories</Link></div>
+        <div className="admin-dashboard-links">
+          <Link to="/admin">Dashboard</Link>
+          {userRole !== "reporter" && <Link to="/admin/categories">Manage categories</Link>}
+        </div>
       </div>
       <div className="cms-grid">
         <form ref={formRef} className="cms-form" onSubmit={submit}>
@@ -248,8 +258,9 @@ export default function AdminArticles() {
           )}
           {!categories.length && (
             <p role="alert">
-              No active categories are available. Add or activate a category
-              from <Link to="/admin/categories">Manage categories</Link>.
+              No active categories are available. {userRole === "reporter"
+                ? "Ask an editor or administrator to add one."
+                : <>Add or activate one from <Link to="/admin/categories">Manage categories</Link>.</>}
             </p>
           )}
           <fieldset >
@@ -377,7 +388,7 @@ export default function AdminArticles() {
                 ["is_featured", "Featured"],
                 ["is_editors_pick", "Editor's pick"],
                 ["allow_comments", "Allow comments"],
-              ].map(([key, label]) => (
+              ].filter(([key]) => userRole !== "reporter" || key === "allow_comments").map(([key, label]) => (
                 <label key={key}>
                   <input
                     name={key}
@@ -389,7 +400,9 @@ export default function AdminArticles() {
                 </label>
               ))}
             </div>
-            <label>
+            {userRole === "reporter" ? (
+              <p className="form-msg">Reporter submissions are sent to editorial review. You can edit your own submissions; only an editor or administrator can approve or publish them.</p>
+            ) : <label>
               Status
               <select name="status" value={form.status} onChange={change}>
                 <option value="draft">Draft</option>
@@ -404,7 +417,7 @@ export default function AdminArticles() {
                   </option>
                 )}
               </select>
-            </label>
+            </label>}
             <button
               className="primary-btn"
               disabled={
@@ -416,7 +429,9 @@ export default function AdminArticles() {
             >
               {saving
                 ? "Saving…"
-                : form.status === "published"
+                : userRole === "reporter"
+                  ? editing ? "Update submission" : "Submit for review"
+                  : form.status === "published"
                   ? "Publish article"
                   : "Save article"}
             </button>
@@ -465,7 +480,7 @@ export default function AdminArticles() {
                       View article →
                     </Link>
                   )}
-                  <button
+                  {["admin", "super_admin"].includes(userRole) && <button
                     type="button"
                     disabled={saving || deleting === article.id}
                     onClick={async () => {
@@ -482,7 +497,7 @@ export default function AdminArticles() {
                     }}
                   >
                     {deleting === article.id ? "Deleting…" : "Delete"}
-                  </button>
+                  </button>}
                 </div>
               </div>
             </article>

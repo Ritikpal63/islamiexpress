@@ -2,7 +2,8 @@ const router=require('express').Router();
 const {randomUUID}=require('crypto');
 const pool=require('../config/db');
 const asyncHandler=require('../utils/asyncHandler');
-const {requireAuth,allowRoles}=require('../middleware/auth');
+const {requireAuth}=require('../middleware/auth');
+const {requirePermission}=require('../middleware/permissions');
 
 router.get('/article/:articleId',asyncHandler(async(req,res)=>{
   const [rows]=await pool.query(`SELECT c.id,c.body,c.parent_id,c.created_at,u.id user_id,u.name,u.avatar_url,(SELECT COUNT(*) FROM comment_likes cl WHERE cl.comment_id=c.id) like_count FROM comments c JOIN users u ON u.id=c.user_id WHERE c.article_id=? AND c.status='approved' ORDER BY c.created_at DESC`,[req.params.articleId]);
@@ -39,7 +40,7 @@ router.post('/:id/report',requireAuth,asyncHandler(async(req,res)=>{
   res.status(201).json({success:true});
 }));
 
-router.patch('/:id/moderate',requireAuth,allowRoles('editor','admin','super_admin'),asyncHandler(async(req,res)=>{
+router.patch('/:id/moderate',requireAuth,requirePermission('moderate_comments'),asyncHandler(async(req,res)=>{
   const allowed=['approved','rejected','spam','deleted'];
   if(!allowed.includes(req.body?.status)) return res.status(400).json({success:false,message:'Invalid status'});
   const [result]=await pool.query('UPDATE comments SET status=? WHERE id=?',[req.body.status,req.params.id]);

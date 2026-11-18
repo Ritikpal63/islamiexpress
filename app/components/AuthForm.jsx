@@ -52,7 +52,7 @@ export default function AuthForm({ mode = "login" }) {
     window.dispatchEvent(new Event("ie-auth-change"));
     const target = params.has("next")
       ? next
-      : ["editor", "admin", "super_admin"].includes(user.role)
+      : ["reporter", "editor", "admin", "super_admin"].includes(user.role)
         ? "/admin"
         : "/";
     navigate(target, { replace: true });

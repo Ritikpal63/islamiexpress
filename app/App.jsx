@@ -24,6 +24,7 @@ import AdminArticles from "@/pages/admin/AdminArticles";
 import AdminCategories from "@/pages/admin/AdminCategories";
 import AdminComments from "@/pages/admin/AdminComments";
 import AdminAds from "@/pages/admin/AdminAds";
+import AdminUsers from "@/pages/admin/AdminUsers";
 import NotFound from "@/pages/NotFound";
 
 function ScrollManager() {
@@ -65,6 +66,7 @@ export default function App() {
         <Route path="/admin/categories" element={<AdminCategories/>}/>
         <Route path="/admin/comments" element={<AdminComments/>}/>
         <Route path="/admin/ads" element={<AdminAds/>}/>
+        <Route path="/admin/users" element={<AdminUsers/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </main>

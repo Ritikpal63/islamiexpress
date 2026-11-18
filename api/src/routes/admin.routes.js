@@ -1,10 +1,11 @@
 const router=require('express').Router();
 const pool=require('../config/db');
 const asyncHandler=require('../utils/asyncHandler');
-const {requireAuth,allowRoles}=require('../middleware/auth');
+const {requireAuth}=require('../middleware/auth');
+const {hasPermission,requirePermission}=require('../middleware/permissions');
 const {randomUUID}=require('crypto');
 const slugify=require('../utils/slug');
-router.use(requireAuth,allowRoles('editor','admin','super_admin'));
+router.use(requireAuth);
 
 const adPositions=[
   ['HEADER_LEADERBOARD','Header leaderboard','desktop',970,90],
@@ -53,7 +54,7 @@ function normalizeAd(body){
   return {data:{name,advertiser:advertiser||null,positionId,creativeUrl,targetUrl:targetUrl||null,status,startAt,endAt}};
 }
 
-router.get('/dashboard',asyncHandler(async(_req,res)=>{
+router.get('/dashboard',requirePermission('view_analytics'),asyncHandler(async(_req,res)=>{
   const results = await Promise.all([
     pool.query(`SELECT COUNT(*) total,SUM(status='published') published,SUM(status='draft') drafts,SUM(status='review') review FROM articles`),
     pool.query(`SELECT COUNT(*) total FROM users WHERE role='reader'`),
@@ -70,22 +71,24 @@ router.get('/dashboard',asyncHandler(async(_req,res)=>{
   res.json({success:true,data:{articles,readers,comments,today_views:views.total||0,engagement,top}});
 }));
 
-router.get('/comments',asyncHandler(async(req,res)=>{
+router.get('/comments',requirePermission('moderate_comments'),asyncHandler(async(req,res)=>{
   const status=req.query.status||'pending';
   const [rows]=await pool.query(`SELECT c.id,c.body,c.status,c.report_count,c.created_at,u.name user_name,a.title article_title,a.slug article_slug FROM comments c JOIN users u ON u.id=c.user_id JOIN articles a ON a.id=c.article_id WHERE c.status=? ORDER BY c.created_at DESC LIMIT 100`,[status]);
   res.json({success:true,data:rows});
 }));
 
-router.get('/articles',asyncHandler(async(req,res)=>{
+router.get('/articles',requirePermission('submit_news'),asyncHandler(async(req,res)=>{
   const status=req.query.status||'';
   const params=[];
-  let where='1=1';
-  if(status){where='a.status=?';params.push(status)}
+  const whereParts=[];
+  if (!hasPermission(req.user,'edit_all_news')) { whereParts.push('a.author_id=?'); params.push(req.user.id); }
+  if(status){whereParts.push('a.status=?');params.push(status)}
+  const where=whereParts.length ? whereParts.map((part)=>`(${part})`).join(' AND ') : '1=1';
   const [rows]=await pool.query(`SELECT a.id,a.title,a.slug,a.status,a.news_type,a.is_top_story,a.is_featured,a.published_at,a.updated_at,c.name category_name,u.name author_name FROM articles a JOIN categories c ON c.id=a.category_id JOIN users u ON u.id=a.author_id WHERE ${where} ORDER BY a.updated_at DESC LIMIT 100`,params);
   res.json({success:true,data:rows});
 }));
 
-router.get('/categories',asyncHandler(async(_req,res)=>{
+router.get('/categories',requirePermission('manage_categories'),asyncHandler(async(_req,res)=>{
   const [rows]=await pool.query(`SELECT c.id,c.name,c.slug,c.description,c.display_order,c.is_active,
     (SELECT COUNT(*) FROM articles a WHERE a.category_id=c.id) article_count
     FROM categories c ORDER BY c.display_order,c.name`);
@@ -102,7 +105,7 @@ function normalizeCategory(body){
   return {data:{name,slug:slugify(name),description:description||null,displayOrder,isActive:body.is_active!==false&&body.is_active!==0}};
 }
 
-router.post('/categories',asyncHandler(async(req,res)=>{
+router.post('/categories',requirePermission('manage_categories'),asyncHandler(async(req,res)=>{
   const result=normalizeCategory(req.body||{});
   if(result.error) return res.status(400).json({success:false,message:result.error});
   const category=result.data;
@@ -111,7 +114,7 @@ router.post('/categories',asyncHandler(async(req,res)=>{
   res.status(201).json({success:true,data:{id}});
 }));
 
-router.put('/categories/:id',asyncHandler(async(req,res)=>{
+router.put('/categories/:id',requirePermission('manage_categories'),asyncHandler(async(req,res)=>{
   const result=normalizeCategory(req.body||{});
   if(result.error) return res.status(400).json({success:false,message:result.error});
   const category=result.data;
@@ -120,7 +123,7 @@ router.put('/categories/:id',asyncHandler(async(req,res)=>{
   res.json({success:true,data:{id:req.params.id}});
 }));
 
-router.delete('/categories/:id',asyncHandler(async(req,res)=>{
+router.delete('/categories/:id',requirePermission('manage_categories'),asyncHandler(async(req,res)=>{
   const [rows]=await pool.query('SELECT id,is_active FROM categories WHERE id=?',[req.params.id]);
   if(!rows.length) return res.status(404).json({success:false,message:'Category not found.'});
   const [[count]]=await pool.query('SELECT COUNT(*) total FROM articles WHERE category_id=?',[req.params.id]);
@@ -132,30 +135,51 @@ router.delete('/categories/:id',asyncHandler(async(req,res)=>{
   res.json({success:true,data:{deleted:true}});
 }));
 
-router.get('/revisions/:articleId',asyncHandler(async(req,res)=>{
+router.get('/revisions/:articleId',requirePermission('edit_all_news'),asyncHandler(async(req,res)=>{
   const [rows]=await pool.query(`SELECT r.id,r.title,r.summary,r.change_note,r.created_at,u.name editor_name FROM article_revisions r JOIN users u ON u.id=r.editor_id WHERE r.article_id=? ORDER BY r.created_at DESC LIMIT 50`,[req.params.articleId]);
   res.json({success:true,data:rows});
 }));
 
-router.get('/articles/:id',asyncHandler(async(req,res)=>{
+router.get('/articles/:id',requirePermission('submit_news'),asyncHandler(async(req,res)=>{
   const [rows]=await pool.query('SELECT * FROM articles WHERE id=? LIMIT 1',[req.params.id]);
   if (!rows.length) return res.status(404).json({success:false,message:'Article not found'});
+  if (!hasPermission(req.user,'edit_all_news') && rows[0].author_id!==req.user.id) return res.status(403).json({success:false,message:'You can access only your articles'});
   res.json({success:true,data:rows[0]});
 }));
 
-router.get('/users',allowRoles('admin','super_admin'),asyncHandler(async(req,res)=>{
+router.get('/users',requirePermission('manage_users'),asyncHandler(async(req,res)=>{
   const [rows]=await pool.query(`SELECT id,name,email,role,status,created_at FROM users ORDER BY created_at DESC LIMIT 200`);
   res.json({success:true,data:rows});
 }));
 
-router.patch('/users/:id/role',allowRoles('super_admin'),asyncHandler(async(req,res)=>{
-  const allowed=['reader','reporter','editor','admin'];
-  if(!allowed.includes(req.body.role)) return res.status(400).json({success:false,message:'Invalid role'});
-  await pool.query('UPDATE users SET role=?,token_version=token_version+1 WHERE id=?',[req.body.role,req.params.id]);
+router.patch('/users/:id/role',asyncHandler(async(req,res)=>{
+  const nextRole=String(req.body?.role||'');
+  const canManageRoles=hasPermission(req.user,'manage_roles');
+  const canAssignEditorial=hasPermission(req.user,'assign_editor_reporter') && ['reporter','editor'].includes(nextRole);
+  if (!canManageRoles && !canAssignEditorial) return res.status(403).json({success:false,message:'Permission denied'});
+  const allowed=canManageRoles?['reader','reporter','editor','admin','super_admin']:['reporter','editor'];
+  if(!allowed.includes(nextRole)) return res.status(400).json({success:false,message:'Invalid role'});
+  if(req.params.id===req.user.id) return res.status(400).json({success:false,message:'You cannot change your own role.'});
+  const [targets]=await pool.query('SELECT id,role,status FROM users WHERE id=? LIMIT 1',[req.params.id]);
+  if(!targets.length) return res.status(404).json({success:false,message:'User not found.'});
+  if(['admin','super_admin'].includes(targets[0].role)&&!canManageRoles) return res.status(403).json({success:false,message:'Only a super admin can change administrator roles.'});
+  await pool.query('UPDATE users SET role=?,token_version=token_version+1 WHERE id=?',[nextRole,req.params.id]);
   res.json({success:true});
 }));
 
-router.post('/epapers',allowRoles('admin','super_admin'),asyncHandler(async(req,res)=>{
+router.patch('/users/:id/status',requirePermission('manage_users'),asyncHandler(async(req,res)=>{
+  const nextStatus=String(req.body?.status||'');
+  if(!['active','disabled'].includes(nextStatus)) return res.status(400).json({success:false,message:'Choose active or disabled.'});
+  if(req.params.id===req.user.id) return res.status(400).json({success:false,message:'You cannot change your own account status.'});
+  const [targets]=await pool.query('SELECT id,role,status FROM users WHERE id=? LIMIT 1',[req.params.id]);
+  if(!targets.length) return res.status(404).json({success:false,message:'User not found.'});
+  if(targets[0].status==='pending') return res.status(400).json({success:false,message:'The user must verify their email before changing account status.'});
+  if(['admin','super_admin'].includes(targets[0].role)&&!hasPermission(req.user,'manage_roles')) return res.status(403).json({success:false,message:'Only a super admin can change administrator accounts.'});
+  await pool.query('UPDATE users SET status=?,token_version=token_version+1 WHERE id=?',[nextStatus,req.params.id]);
+  res.json({success:true});
+}));
+
+router.post('/epapers',requirePermission('manage_settings'),asyncHandler(async(req,res)=>{
   const {randomUUID}=require('crypto'); const b=req.body;
   if(!b.edition_date||!b.cover_image||!b.pdf_url) return res.status(400).json({success:false,message:'edition_date, cover_image and pdf_url required'});
   const id=randomUUID();
@@ -163,18 +187,18 @@ router.post('/epapers',allowRoles('admin','super_admin'),asyncHandler(async(req,
   res.status(201).json({success:true,data:{id}});
 }));
 
-router.get('/ads',allowRoles('admin','super_admin'),asyncHandler(async(_req,res)=>{
+router.get('/ads',requirePermission('manage_ads'),asyncHandler(async(_req,res)=>{
   const [rows]=await pool.query(`SELECT a.*,p.code position_code,p.name position_name,(SELECT COUNT(*) FROM ad_events e WHERE e.advertisement_id=a.id AND e.event_type='impression') impressions,(SELECT COUNT(*) FROM ad_events e WHERE e.advertisement_id=a.id AND e.event_type='click') clicks FROM advertisements a JOIN ad_positions p ON p.id=a.position_id ORDER BY a.created_at DESC`);
   res.json({success:true,data:rows});
 }));
 
-router.get('/ad-positions',allowRoles('admin','super_admin'),asyncHandler(async(_req,res)=>{
+router.get('/ad-positions',requirePermission('manage_ads'),asyncHandler(async(_req,res)=>{
   await pool.query('INSERT IGNORE INTO ad_positions(code,name,device,width,height) VALUES ?', [adPositions]);
   const [rows]=await pool.query('SELECT id,code,name,device,width,height FROM ad_positions ORDER BY id');
   res.json({success:true,data:rows});
 }));
 
-router.post('/ads',allowRoles('admin','super_admin'),asyncHandler(async(req,res)=>{
+router.post('/ads',requirePermission('manage_ads'),asyncHandler(async(req,res)=>{
   const result=normalizeAd(req.body||{});
   if(result.error) return res.status(400).json({success:false,message:result.error});
   const ad=result.data;
@@ -186,7 +210,7 @@ router.post('/ads',allowRoles('admin','super_admin'),asyncHandler(async(req,res)
   res.status(201).json({success:true,data:{id}});
 }));
 
-router.put('/ads/:id',allowRoles('admin','super_admin'),asyncHandler(async(req,res)=>{
+router.put('/ads/:id',requirePermission('manage_ads'),asyncHandler(async(req,res)=>{
   const result=normalizeAd(req.body||{});
   if(result.error) return res.status(400).json({success:false,message:result.error});
   const ad=result.data;

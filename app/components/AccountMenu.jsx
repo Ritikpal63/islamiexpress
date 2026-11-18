@@ -91,7 +91,7 @@ export default function AccountMenu() {
     );
   return (
     <span className="account-menu">
-      {["editor", "admin", "super_admin"].includes(user.role) && (
+      {["reporter", "editor", "admin", "super_admin"].includes(user.role) && (
         <Link to="/admin/articles">Newsroom</Link>
       )}
       {["admin", "super_admin"].includes(user.role) && (
@@ -99,8 +99,8 @@ export default function AccountMenu() {
       )}
       <Link
         className="account-menu__identity"
-        to={["admin", "super_admin"].includes(user.role) ? "/admin" : "/"}
-        aria-label={`Open ${["admin", "super_admin"].includes(user.role) ? "admin dashboard" : "homepage"}`}
+        to={["reporter", "editor", "admin", "super_admin"].includes(user.role) ? "/admin" : "/"}
+        aria-label={`Open ${["reporter", "editor", "admin", "super_admin"].includes(user.role) ? "newsroom dashboard" : "homepage"}`}
       >
         <User size={14} aria-hidden="true" /> {user.name}
       </Link>

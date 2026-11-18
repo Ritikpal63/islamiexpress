@@ -4,7 +4,16 @@ const pool = require('../config/db');
 const asyncHandler = require('../utils/asyncHandler');
 const slugify = require('../utils/slug');
 const articleInput = require('../utils/articleInput');
-const { optionalAuth, requireAuth, allowRoles } = require('../middleware/auth');
+const { optionalAuth, requireAuth } = require('../middleware/auth');
+const { hasPermission, requirePermission } = require('../middleware/permissions');
+
+function workflowStatus(user, requestedStatus) {
+  if (user.role === 'reporter') return 'review';
+  if (['published', 'scheduled'].includes(requestedStatus) && !hasPermission(user, 'publish_news')) return 'review';
+  if (requestedStatus === 'review' && !hasPermission(user, 'review_news')) return 'draft';
+  if (['rejected', 'archived'].includes(requestedStatus) && !hasPermission(user, 'approve_news')) return 'review';
+  return requestedStatus;
+}
 
 const articleSelect = `SELECT a.id,a.author_id,a.category_id,a.title,a.slug,a.summary,a.body,a.featured_image,a.image_caption,a.image_credit,a.location,a.language,a.status,a.news_type,a.is_featured,a.is_top_story,a.is_editors_pick,a.allow_comments,a.seo_title,a.seo_description,a.canonical_url,a.correction_note,a.published_at,a.updated_at,a.created_at,c.name category_name,c.slug category_slug,u.name author_name,u.avatar_url author_avatar,u.bio author_bio,
 (SELECT COUNT(*) FROM article_likes l WHERE l.article_id=a.id) like_count,
@@ -61,36 +70,41 @@ router.get('/:slug', optionalAuth, asyncHandler(async (req,res) => {
   res.json({success:true,data:article});
 }));
 
-router.post('/', requireAuth, allowRoles('reporter','editor','admin','super_admin'), asyncHandler(async (req,res) => {
+router.post('/', requireAuth, requirePermission('create_news'), asyncHandler(async (req,res) => {
   const b=articleInput(req.body);
   const [categories]=await pool.query('SELECT id FROM categories WHERE id=? AND is_active=1',[b.category_id]);
   if (!categories.length) return res.status(400).json({success:false,message:'Choose an active category'});
   const id=randomUUID();
   const slug=(b.slug?slugify(b.slug):slugify(b.title))+'-'+id.slice(0,8);
-  const canPublish=['editor','admin','super_admin'].includes(req.user.role);
-  let status=b.status||'draft'; if (['published','scheduled'].includes(status)&&!canPublish) status='review';
+  const status=workflowStatus(req.user,b.status||'draft');
+  const editorialFields = req.user.role === 'reporter'
+    ? { is_featured: false, is_top_story: false, is_editors_pick: false }
+    : b;
   const publishedAt=status==='published' ? new Date() : null;
   await pool.query(`INSERT INTO articles(id,title,slug,summary,body,featured_image,image_caption,image_credit,category_id,author_id,location,language,status,news_type,is_featured,is_top_story,is_editors_pick,allow_comments,seo_title,seo_description,canonical_url,source_name,source_url,scheduled_at,published_at)
-  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[id,b.title,slug,b.summary||null,b.body,b.featured_image||null,b.image_caption||null,b.image_credit||null,b.category_id,req.user.id,b.location||null,b.language||'en',status,b.news_type||'normal',!!b.is_featured,!!b.is_top_story,!!b.is_editors_pick,b.allow_comments!==false,b.seo_title||null,b.seo_description||null,b.canonical_url||null,b.source_name||null,b.source_url||null,status==='scheduled'?b.scheduled_at:null,publishedAt]);
+  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[id,b.title,slug,b.summary||null,b.body,b.featured_image||null,b.image_caption||null,b.image_credit||null,b.category_id,req.user.id,b.location||null,b.language||'en',status,b.news_type||'normal',!!editorialFields.is_featured,!!editorialFields.is_top_story,!!editorialFields.is_editors_pick,b.allow_comments!==false,b.seo_title||null,b.seo_description||null,b.canonical_url||null,b.source_name||null,b.source_url||null,status==='scheduled'?b.scheduled_at:null,publishedAt]);
   res.status(201).json({success:true,data:{id,slug,status}});
 }));
 
-router.put('/:id', requireAuth, allowRoles('reporter','editor','admin','super_admin'), asyncHandler(async (req,res) => {
+router.put('/:id', requireAuth, requirePermission('edit_own_news'), asyncHandler(async (req,res) => {
   const [rows]=await pool.query('SELECT * FROM articles WHERE id=?',[req.params.id]);
   const current=rows[0]; if(!current) return res.status(404).json({success:false,message:'Article not found'});
   if(req.user.role==='reporter' && current.author_id!==req.user.id) return res.status(403).json({success:false,message:'You can edit only your articles'});
   const b=articleInput(req.body,current);
   const [categories]=await pool.query('SELECT id FROM categories WHERE id=? AND is_active=1',[b.category_id]);
   if (!categories.length) return res.status(400).json({success:false,message:'Choose an active category'});
-  const canPublish=['editor','admin','super_admin'].includes(req.user.role);
-  let status=b.status;
-  if (['published','scheduled'].includes(status)&&!canPublish) status='review';
+  const canEditAll = hasPermission(req.user,'edit_all_news');
+  if (!canEditAll && current.author_id !== req.user.id) return res.status(403).json({success:false,message:'You can edit only your articles'});
+  const status=workflowStatus(req.user,b.status);
+  const editorialFields = req.user.role === 'reporter'
+    ? { is_featured: current.is_featured, is_top_story: current.is_top_story, is_editors_pick: current.is_editors_pick }
+    : b;
   const connection=await pool.getConnection();
   try {
     await connection.beginTransaction();
     await connection.query('INSERT INTO article_revisions(article_id,editor_id,title,summary,body,change_note) VALUES(?,?,?,?,?,?)',[current.id,req.user.id,current.title,current.summary,current.body,b.change_note||'Article updated']);
     await connection.query(`UPDATE articles SET title=?,summary=?,body=?,featured_image=?,category_id=?,location=?,language=?,status=?,news_type=?,is_featured=?,is_top_story=?,is_editors_pick=?,allow_comments=?,seo_title=?,seo_description=?,correction_note=?,scheduled_at=?,published_at=CASE WHEN ?='published' AND published_at IS NULL THEN NOW() ELSE published_at END WHERE id=?`,[
-      b.title,b.summary||null,b.body,b.featured_image||null,b.category_id,b.location||null,b.language,status,b.news_type,b.is_featured,b.is_top_story,b.is_editors_pick,b.allow_comments,b.seo_title||null,b.seo_description||null,b.correction_note||null,status==='scheduled'?b.scheduled_at:null,status,current.id]);
+      b.title,b.summary||null,b.body,b.featured_image||null,b.category_id,b.location||null,b.language,status,b.news_type,editorialFields.is_featured,editorialFields.is_top_story,editorialFields.is_editors_pick,b.allow_comments,b.seo_title||null,b.seo_description||null,b.correction_note||null,status==='scheduled'?b.scheduled_at:null,status,current.id]);
     await connection.commit();
   } catch (error) {
     await connection.rollback();
@@ -99,7 +113,7 @@ router.put('/:id', requireAuth, allowRoles('reporter','editor','admin','super_ad
   res.json({success:true,data:{id:current.id,slug:current.slug,status},message:'Article updated'});
 }));
 
-router.delete('/:id', requireAuth, allowRoles('editor','admin','super_admin'), asyncHandler(async (req,res) => {
+router.delete('/:id', requireAuth, requirePermission('delete_news'), asyncHandler(async (req,res) => {
   const [result]=await pool.query('DELETE FROM articles WHERE id=?',[req.params.id]);
   if(!result.affectedRows) return res.status(404).json({success:false,message:'Article not found'});
   res.json({success:true,message:'Article deleted'});
