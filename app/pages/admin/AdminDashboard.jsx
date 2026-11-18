@@ -26,9 +26,13 @@ export default function Admin() {
           setData({
             reporter: true,
             total: articles.length,
-            review: articles.filter((article) => article.status === "review").length,
-            published: articles.filter((article) => article.status === "published").length,
-            drafts: articles.filter((article) => article.status === "draft").length,
+            review: articles.filter((article) => article.status === "review")
+              .length,
+            published: articles.filter(
+              (article) => article.status === "published",
+            ).length,
+            drafts: articles.filter((article) => article.status === "draft")
+              .length,
           });
           return;
         }
@@ -42,9 +46,7 @@ export default function Admin() {
       <div className="container admin-page">
         <div className="empty-state">
           <h2>CMS access required</h2>
-          <p>
-            {error}. Sign in with an account that has newsroom access.
-          </p>
+          <p>{error}. Sign in with an account that has newsroom access.</p>
         </div>
       </div>
     );
@@ -57,11 +59,22 @@ export default function Admin() {
           <span>REPORTER WORKSPACE</span>
           <h1>My submissions</h1>
           <p>Submit a story for editorial review and track its status.</p>
-          <div className="admin-dashboard-links"><Link to="/admin/articles">Write or manage my news</Link></div>
+          <div className="admin-dashboard-links">
+            <Link to="/admin/articles">Write or manage my news</Link>
+          </div>
         </div>
         <div className="stat-grid">
-          {[["My submissions", data.total], ["In review", data.review], ["Published", data.published], ["Drafts", data.drafts]].map(([label, value]) => (
-            <div className="stat-card" key={label}><FileText /><span>{label}</span><b>{Number(value || 0).toLocaleString("en-IN")}</b></div>
+          {[
+            ["My submissions", data.total],
+            ["In review", data.review],
+            ["Published", data.published],
+            ["Drafts", data.drafts],
+          ].map(([label, value]) => (
+            <div className="stat-card" key={label}>
+              <FileText />
+              <span>{label}</span>
+              <b>{Number(value || 0).toLocaleString("en-IN")}</b>
+            </div>
           ))}
         </div>
       </div>
@@ -80,14 +93,24 @@ export default function Admin() {
     <div className="container admin-page">
       <div className="page-heading">
         <span>NEWSROOM CMS</span>
-        <h1>{user?.role === "super_admin" ? "Super Admin Dashboard" : user?.role === "admin" ? "Admin Dashboard" : "Editor Dashboard"}</h1>
+        <h1>
+          {user?.role === "super_admin"
+            ? "Super Admin Dashboard"
+            : user?.role === "admin"
+              ? "Admin Dashboard"
+              : "Editor Dashboard"}
+        </h1>
         <p>Publishing and reader engagement overview.</p>
-        <div className="admin-dashboard-links">
+        <div className="admin-dashboard-links admin-dashboard-links--single-line">
           <Link to="/admin/articles">Manage news</Link>
           <Link to="/admin/categories">Manage categories</Link>
           <Link to="/admin/comments">Moderate comments</Link>
-          {user?.role !== "editor" && <Link to="/admin/ads">Manage advertisements</Link>}
-          {(user?.role === "admin" || user?.role === "super_admin") && <Link to="/admin/users">Manage users</Link>}
+          {user?.role !== "editor" && (
+            <Link to="/admin/ads">Manage advertisements</Link>
+          )}
+          {(user?.role === "admin" || user?.role === "super_admin") && (
+            <Link to="/admin/users">Manage users</Link>
+          )}
         </div>
       </div>
       <div className="stat-grid">

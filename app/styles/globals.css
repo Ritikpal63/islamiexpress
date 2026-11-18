@@ -1720,6 +1720,12 @@ footer {
   flex-wrap: wrap;
   gap: 10px;
 }
+.admin-dashboard-links--single-line {
+  flex-wrap: nowrap;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
 .admin-dashboard-links a,
 .admin-dashboard-button,
 .admin-ad-primary,
